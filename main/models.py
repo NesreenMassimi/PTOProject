@@ -1,8 +1,9 @@
 from django.db import models
-from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey,DATE,DATETIME,Float,BIGINT,Enum,TEXT
+from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, DATE, DATETIME, Float, BIGINT, Enum, TEXT, \
+    CheckConstraint
 from sqlalchemy.ext.declarative import declarative_base
 import pymysql
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship, backref, validates
 from sqlalchemy import create_engine
 engine = create_engine("mysql://root:16001700@localhost/PTO_system")
 Base = declarative_base()
@@ -81,6 +82,9 @@ class Record(Base):
     updated = Column(DATE)
     approved_by = Column(Integer,ForeignKey("user.id"),nullable=False)
     status = relationship("Status", backref=backref("Record"))
+    __table_args__ = (
+        CheckConstraint('start_date < end_date'),
+    )
 
 
 class Leaders(Base):
