@@ -29,6 +29,10 @@ class RecordDetailsView(viewsets.ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         get_record(request,*args,**kwargs)
 
+class RecordApprovalView(viewsets.ModelViewSet):
+    def update(self, request, *args, **kwargs):
+        approve_record(request,*args,**kwargs)
+
 
 class UserView(viewsets.ModelViewSet):
 

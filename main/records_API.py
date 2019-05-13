@@ -12,3 +12,5 @@ def get_record(request,*args,**kwargs):
 def get_records_for_user(request,*args,**kwargs):
     pass
 
+def approve_record(request,*args,**kwargs):
+    pass
