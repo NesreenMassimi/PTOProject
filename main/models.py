@@ -1,8 +1,6 @@
-from django.db import models
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, DATE, DATETIME, Float, BIGINT, Enum, TEXT, \
     CheckConstraint
 from sqlalchemy.ext.declarative import declarative_base
-import pymysql
 from sqlalchemy.orm import relationship, backref, validates
 from sqlalchemy import create_engine
 engine = create_engine("mysql://root:16001700@localhost/PTO_system")
@@ -26,7 +24,7 @@ class User(Base) :
     updated = Column(DATE)
     last_login = Column(DATETIME)
     name = Column(String(45))
-    role = relationship("Role",uselist=False,backref=backref("User"))
+    roles = relationship("Role",uselist=False,backref=backref("User"))
 
 
 class TeamMembers(Base):
@@ -63,7 +61,7 @@ class Status(Base):
 class Role(Base):
 
     __tablename__ = 'role'
-    id = Column(Integer, primary_key=True,autoincrement=True)
+    id= Column(Integer, primary_key=True,autoincrement=True)
     role_name = Column(String(45))
     created = Column(DATE)
     updated = Column(DATE)

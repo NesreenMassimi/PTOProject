@@ -9,8 +9,8 @@ import sqlalchemy.orm
 from datetime import date
 from sqlalchemy import create_engine
 from .serializers import *
-from .userAuth import *
+from .users_auth import *
 from rest_framework import viewsets
-from .records_API import *
-from .users_APIs  import *
-from .Team_APIS import *
+from .records_apis import *
+from .users_api  import *
+from .team_api import *
