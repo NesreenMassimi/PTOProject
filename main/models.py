@@ -4,7 +4,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref, validates
 from sqlalchemy import create_engine
 from django.db import models
-from .managers import *
 engine = create_engine("mysql://root:16001700@localhost/PTO_system")
 Base = declarative_base()
 
