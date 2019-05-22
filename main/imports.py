@@ -1,7 +1,5 @@
 from passlib.hash import bcrypt
 from sqlalchemy.orm.exc import NoResultFound
-
-from main.models import User
 from rest_framework.response import Response
 from rest_framework import status
 from django.utils.timezone import now
@@ -14,3 +12,5 @@ from rest_framework import viewsets
 from .records_apis import *
 from .users_api  import *
 from .team_api import *
+from .models import *
+from django.db import models

@@ -1,8 +1,8 @@
 
 from marshmallow_sqlalchemy import ModelSchema
+
+from main.models import User
 from .models import *
-
-
 
 class UserSchema(ModelSchema):
 

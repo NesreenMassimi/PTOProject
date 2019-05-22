@@ -3,6 +3,8 @@ from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, DAT
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref, validates
 from sqlalchemy import create_engine
+from django.db import models
+from .managers import *
 engine = create_engine("mysql://root:16001700@localhost/PTO_system")
 Base = declarative_base()
 
@@ -39,6 +41,7 @@ class TeamMembers(Base):
     Team = relationship('Team', back_populates="members")
 
 
+
 class Team(Base):
     __tablename__ = 'team'
     id = Column(Integer, primary_key=True,autoincrement=True)
@@ -46,6 +49,7 @@ class Team(Base):
     created = Column(DATE)
     updated = Column(DATE)
     members = relationship('TeamMembers', back_populates="Team")
+
 
 
 class Status(Base):
@@ -58,6 +62,7 @@ class Status(Base):
     status_type = Enum('approved','rejected','pending')
 
 
+
 class Role(Base):
 
     __tablename__ = 'role'
@@ -65,6 +70,7 @@ class Role(Base):
     role_name = Column(String(45))
     created = Column(DATE)
     update = Column(DATE)
+
 
 
 class Record(Base):
@@ -83,6 +89,7 @@ class Record(Base):
     __table_args__ = (
         CheckConstraint('start_date < end_date'),
     )
+
 
 
 class Leaders(Base):

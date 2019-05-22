@@ -1,4 +1,3 @@
-from rest_framework import viewsets
 
 from .imports import *
 
@@ -11,6 +10,7 @@ class UserView(viewsets.ModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         result = []
+
         accounts = session.query(User).all()
         user_schema = UserSchema()
         for us in accounts:
@@ -18,27 +18,29 @@ class UserView(viewsets.ModelViewSet):
         return Response(result, status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):
+        pass
 
-        try:
-            session.add(account)
-            session.new
-            session.commit()
-        except:
-            session.rollback()
-            raise
+    #   try:
+    #      session.add(account)
+    #     session.new
+    # session.commit()
+    # except:
+    #    session.rollback()
+    #   raise
 
-        finally:
-            session.close()
+    # finally:
+    #   session.close()
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    #    return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class UserDetailsView(viewsets.ModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         pass
+
     def update(self, request, *args, **kwargs):
         pass
+
     def destroy(self, request, *args, **kwargs):
         pass
-
-
