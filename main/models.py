@@ -13,11 +13,11 @@ Base = declarative_base()
 
 class User(Base) :
     __tablename__ = 'user'
-    id = Column(Integer, primary_key=True,autoincrement=True)
+    user_id = Column(Integer, primary_key=True,autoincrement=True)
     email = Column(String(45),unique=True)
     hiring_date = Column(DATE)
     phone_number = Column(BIGINT)
-    ID= Column(Integer,unique=True)
+    identity_number= Column(Integer,unique=True)
     role_id = Column(Integer,ForeignKey("role.id"),nullable=False)
     password = Column(String(45))
     created = Column(DATE)
@@ -32,7 +32,7 @@ class TeamMembers(Base):
     __tablename__ = 'team_members'
     id = Column(Integer, primary_key=True,autoincrement=True)
     team_id = Column(Integer,ForeignKey("team.id"),nullable=False)
-    member_id = Column(Integer,ForeignKey("user.id"),nullable=False)
+    member_id = Column(Integer,ForeignKey("id"),nullable=False)
     type = Column(Enum('employee','leader'))
     created = Column(DATE)
     updated = Column(DATE)
@@ -64,7 +64,7 @@ class Role(Base):
     id= Column(Integer, primary_key=True,autoincrement=True)
     role_name = Column(String(45))
     created = Column(DATE)
-    updated = Column(DATE)
+    update = Column(DATE)
 
 
 class Record(Base):
@@ -73,12 +73,12 @@ class Record(Base):
     id = Column(Integer, primary_key=True,autoincrement=True)
     start_date = Column(DATE)
     end_date = Column(DATE)
-    user =Column(Integer,ForeignKey("user.id"),nullable=False)
+    user =Column(Integer,ForeignKey("id"),nullable=False)
     type = Column(Enum('SICK', 'TRAVEL', 'MARRIAGE', 'FAMILY EVENT', 'OTHER'))
     note = Column(TEXT)
     created = Column(DATE)
     updated = Column(DATE)
-    approved_by = Column(Integer,ForeignKey("user.id"),nullable=False)
+    approved_by = Column(Integer,ForeignKey("id"),nullable=False)
     status = relationship("Status", backref=backref("Record"))
     __table_args__ = (
         CheckConstraint('start_date < end_date'),
@@ -88,8 +88,8 @@ class Record(Base):
 class Leaders(Base):
 
     __tablename__ = 'leaders'
-    user = Column(Integer,ForeignKey("user.id"),nullable=False)
-    user_leader_id1 = Column(Integer,ForeignKey("user.id"),nullable=False)
+    user = Column(Integer,ForeignKey("id"),nullable=False)
+    user_leader_id1 = Column(Integer,ForeignKey("id"),nullable=False)
     id = Column(Integer, primary_key=True,autoincrement=True)
     created = Column(DATE)
     updated = Column(DATE)

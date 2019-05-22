@@ -26,5 +26,6 @@ class TeamMemberDetailsView(viewsets.ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         pass
+
     def destroy(self, request, *args, **kwargs):
         pass

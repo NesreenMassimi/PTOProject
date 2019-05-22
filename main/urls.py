@@ -1,10 +1,7 @@
 
 from django.urls import path
-from .team_api import *
-from .users_api import *
-from .users_auth import *
-from .team_api import *
 from .records_apis import *
+from .team_api import *
 
 login = LoginView.as_view({
 
